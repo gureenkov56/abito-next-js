@@ -3,6 +3,11 @@
 body {
   font-family: "Open Sans", sans-serif;
   margin: 2rem;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   header {
     display: flex;
     justify-content: space-between;
@@ -10,8 +15,12 @@ body {
     gap: 1rem;
      .logo {
        flex: 1;
-       font-weight: 900;
        font-size: 20px;
+       a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+       }
      }
      .search {
        flex: 5;
