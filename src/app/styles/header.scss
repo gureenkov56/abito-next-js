@@ -1,7 +1,7 @@
 @import './variables.scss';
 
 header {
-  display: flex;
+      display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
@@ -20,6 +20,9 @@ header {
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+    input {
+      display: none;
     }
   }
   .search {
@@ -57,3 +60,5 @@ header {
     justify-items: right;
   }
 }
+
+
