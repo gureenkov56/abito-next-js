@@ -1,0 +1,35 @@
+.menu {
+    position: absolute;
+    background-color: #fff;
+    left: 1rem;
+    right: 1rem;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: .5rem;
+
+    display: flex;
+    gap: 1rem;
+
+    box-shadow: 0 0 2rem 0px rgb(205, 205, 205);
+
+    .left-side {
+        flex: 1;
+
+        ul > li > a {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            border-radius: .5rem;
+            padding: .6rem;
+            margin-bottom: .3rem;
+            
+            &:hover {
+                background-color: #ffe7ac;
+            }
+        }
+    }
+
+    .right-side {
+        flex: 3;
+    }
+}

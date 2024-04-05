@@ -34,7 +34,7 @@ const Header = ({isShowCategories, toggleMenu}: HeaderProps) => {
           <Image 
             src={isShowCategories ? xIcon : categoriesIcon} 
             alt="Categories" 
-            width={isShowCategories ? 10 : 20} 
+            width={20} 
           />
           Categories 
         </button>

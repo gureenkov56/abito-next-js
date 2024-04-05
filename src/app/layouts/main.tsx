@@ -1,20 +1,23 @@
-import { useState } from "react"
+import React, { PropsWithChildren, useState } from "react"
 import Header from "../components/header"
 import HeaderMenu from "../components/headerMenu"
 import '../styles/global.scss'
 
-const Main = ({children}) => {
-  const [isShowCategories, setIsShowCategories] = useState(false)
+const Main = ({children}: PropsWithChildren) => {
+  const [isShowCategories, setIsShowCategories] = useState(true)
   const headerMenuClass = isShowCategories ? 'show' : 'hidden'
+
+  
   
   return (
     <>
       <Header 
         isShowCategories={isShowCategories}
-        toggleMenu={() => setIsShowCategories(!isShowCategories)} 
+        // TODO: fix this stupid crutch
+        toggleMenu={() => {setIsShowCategories(!isShowCategories); return false}} 
       />
       <HeaderMenu 
-        className={headerMenuClass}
+        isShow={headerMenuClass}
       />
 
       <main>{children}</main>
