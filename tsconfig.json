@@ -38,7 +38,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "prisma/seed.mjs", "prisma/categories.mock.js"  ],
   "exclude": [
     "node_modules"
   ]
