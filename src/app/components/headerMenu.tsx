@@ -1,16 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PropsWithoutRef } from 'react'
+import { PropsWithoutRef, useEffect, useState } from 'react'
 import 'styles/header-menu.scss'
-import carIcon from 'public/images/png/categories/car-icon.png'
-import buildIcon from 'public/images/png/categories/building-icon.png'
-import telIcon from 'public/images/png/categories/tel-icon.png'
+import { Category } from "@prisma/client";
+import axios from "axios";
 
 type HeaderMenuProps = {
   isShow: string
 }
 
-const headerMenu = ({isShow}: PropsWithoutRef<HeaderMenuProps>) => {
+const HeaderMenu = ({ isShow }: PropsWithoutRef<HeaderMenuProps>) => {
+
+  const [categories, setCategories] = useState<Category[]>([])
+
+  useEffect(() => {
+    axios.get('/api/categories')
+      .then(({ data }) => setCategories(data))
+  })
+
+  function getIcon(filePng: string | null): string {
+    return filePng ? require(`public/images/png/categories/${filePng}`) : ''
+  }
 
   const className = [isShow, 'menu'].join(" ")
 
@@ -18,26 +28,18 @@ const headerMenu = ({isShow}: PropsWithoutRef<HeaderMenuProps>) => {
     <div className={className} >
       <div className="left-side">
         <ul>
-          <li>
-            <Link href='/'>
-              <Image src={carIcon} alt="alt" width={25} />
-              <span>Автомобили</span>
-            </Link>
-          </li>
-          <li>
-            <Link href='/'>
-              <Image src={buildIcon} alt="alt" width={25} />
-              <span>Недвижимость</span>
-            </Link>
-          </li>
-          <li>
-            <Link href='/'>
-              <Image src={telIcon} alt="alt" width={25} />
-              <span>Техника</span>
-            </Link>
-          </li>
-          
-          
+          {categories.map(({ name, id, icon }, index) => (
+            <li key={id}>
+              <Link href={`/category/${id}`} >
+                <Image
+                  src={getIcon(icon)}
+                  alt={`Категория ${name}`}
+                  width={25}
+                />
+                <span>{name}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
       <div className='right-side'>
@@ -49,9 +51,9 @@ const headerMenu = ({isShow}: PropsWithoutRef<HeaderMenuProps>) => {
           <li>Подк 3</li>
         </ul>
       </div>
-      
+
     </div>
   )
 }
 
-export default headerMenu
+export default HeaderMenu
